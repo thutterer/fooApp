@@ -1,7 +1,6 @@
 var Observable = require("data/observable").Observable;
 var ObservableArray = require("data/observable-array").ObservableArray;
 var pageContext = new Observable({
-    newText: 'foo bar baz',
     textList: new ObservableArray([
         { text: "foo" },
         { text: "bar" },
@@ -10,14 +9,12 @@ var pageContext = new Observable({
 });
 
 function pageLoaded(args) {
-    
     var page = args.object;
-
+    var gotData = page.navigationContext;
+    if(gotData) {
+        pageContext.textList.push({ text: gotData.text });
+    }
     page.bindingContext = pageContext;
-}
-function saveText() {
-    pageContext.textList.push({ text: pageContext.newText });
-    pageContext.newText = "";
 }
 function listViewItemTap(item) {
     var dialogs = require("ui/dialogs");
@@ -29,6 +26,10 @@ function listViewItemTap(item) {
         } 
     });
 }
+function onAdd() {
+    var frames = require("ui/frame");
+    frames.topmost().navigate("edit-page");
+}
 exports.pageLoaded = pageLoaded;
-exports.saveText = saveText;
 exports.listViewItemTap = listViewItemTap;
+exports.onAdd = onAdd;

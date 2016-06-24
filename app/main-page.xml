@@ -1,25 +1,12 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <TabView>
-    <TabView.items>
-      <TabViewItem title="New">
-        <TabViewItem.view>
-          <StackLayout class="tab-content">
-            <TextView text="{{ newText }}" />
-            <Button text="Save" tap="saveText"/>
-          </StackLayout>
-        </TabViewItem.view>
-      </TabViewItem>
-      <TabViewItem title="Old">
-        <TabViewItem.view>
-          <StackLayout class="tab-content">
-            <ListView items="{{ textList }}" itemTap="listViewItemTap">
-              <ListView.itemTemplate>
-                <Label text="{{ text }}" horizontalAlignment="left" verticalAlignment="center"/>
-              </ListView.itemTemplate>
-            </ListView>
-          </StackLayout>
-        </TabViewItem.view>
-      </TabViewItem>
-    </TabView.items>
-  </TabView>
+  <ActionBar title="fooApp">
+    <ActionItem tap="onAdd" ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right"/>
+  </ActionBar>
+  <StackLayout>
+    <ListView items="{{ textList }}" itemTap="listViewItemTap">
+      <ListView.itemTemplate>
+        <Label text="{{ text }}" horizontalAlignment="left" verticalAlignment="center"/>
+      </ListView.itemTemplate>
+    </ListView>
+  </StackLayout>
 </Page>
