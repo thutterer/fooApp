@@ -1,19 +1,22 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
   <TabView>
     <TabView.items>
-      <TabViewItem title="First">
+      <TabViewItem title="New">
         <TabViewItem.view>
           <StackLayout class="tab-content">
-            <Label text="First View" class="title"/>
-            <Label text="This is the lame content of the first tab." textWrap="true"/>
+            <TextView text="{{ newText }}" />
+            <Button text="Save" tap="saveText"/>
           </StackLayout>
         </TabViewItem.view>
       </TabViewItem>
-      <TabViewItem title="Second">
+      <TabViewItem title="Old">
         <TabViewItem.view>
           <StackLayout class="tab-content">
-            <Label text="Second View" class="title"/>
-            <Label text="This is the awesome content of the second tab." textWrap="true"/>
+            <ListView items="{{ textList }}" itemTap="listViewItemTap">
+              <ListView.itemTemplate>
+                <Label text="{{ text }}" horizontalAlignment="left" verticalAlignment="center"/>
+              </ListView.itemTemplate>
+            </ListView>
           </StackLayout>
         </TabViewItem.view>
       </TabViewItem>
