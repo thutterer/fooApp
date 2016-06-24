@@ -4,6 +4,6 @@
     <ActionItem tap="onCancel" ios.systemIcon="1" android.systemIcon="ic_menu_close_clear_cancel"/>
   </ActionBar>
   <StackLayout>
-    <TextView id="textEditor" text="{{ newText }}" />
+    <TextView id="textEditor" text="{{ text }}" />
   </StackLayout>
 </Page>

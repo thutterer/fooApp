@@ -12,14 +12,22 @@ function pageLoaded(args) {
     var page = args.object;
     var gotData = page.navigationContext;
     if(gotData) {
-        pageContext.textList.push({ text: gotData.text });
+        if(gotData.index) {
+            pageContext.textList.getItem(gotData.index).text = gotData.text;
+        }
+        else {
+            pageContext.textList.push({ text: gotData.text });
+        }
     }
     page.bindingContext = pageContext;
 }
 function listViewItemTap(item) {
     var dialogs = require("ui/dialogs");
-    dialogs.action("", "Cancel", ["Delete"]).then(function (result) {
+    dialogs.action("", "Cancel", ["Edit", "Delete"]).then(function (result) {
         switch(result) {
+            case "Edit":
+                onEdit(item.index);
+                break;
             case "Delete":
                 pageContext.textList.splice(item.index, 1);
                 break;
@@ -28,8 +36,26 @@ function listViewItemTap(item) {
 }
 function onAdd() {
     var frames = require("ui/frame");
-    frames.topmost().navigate("edit-page");
+    frames.topmost().navigate({
+        moduleName: 'edit-page',
+        context: {
+            action: 'new',
+            index: undefined
+        }
+    });
+}
+function onEdit(index) {
+    var frames = require("ui/frame");
+    frames.topmost().navigate({
+        moduleName: 'edit-page',
+        context: {
+            action: 'edit',
+            text: pageContext.textList.getItem(index).text,
+            index: index
+        }
+    });
 }
 exports.pageLoaded = pageLoaded;
 exports.listViewItemTap = listViewItemTap;
 exports.onAdd = onAdd;
+exports.onEdit = onEdit;
