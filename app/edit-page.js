@@ -20,14 +20,13 @@ function onCancel() {
 }
 function onSave() {
     var frames = require("ui/frame");
-    var navigationOptions = {
-        moduleName: 'main-page',
-        context: {
-            text: pageContext.text,
-            index: pageContext.index
-        }
+    if (pageContext.index === undefined) {
+        global.textList.push({ text: pageContext.text });
     }
-    frames.topmost().navigate(navigationOptions);
+    else {
+        global.textList.getItem(pageContext.index).text = pageContext.text;
+    }
+    frames.topmost().navigate('main-page');
 }
 exports.pageLoaded = pageLoaded;
 exports.onCancel = onCancel;

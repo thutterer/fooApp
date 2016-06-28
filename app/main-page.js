@@ -1,24 +1,11 @@
 var Observable = require("data/observable").Observable;
 var ObservableArray = require("data/observable-array").ObservableArray;
 var pageContext = new Observable({
-    textList: new ObservableArray([
-        { text: "foo" },
-        { text: "bar" },
-        { text: "baz" }
-    ])
+    textList: global.textList
 });
 
 function pageLoaded(args) {
     var page = args.object;
-    var gotData = page.navigationContext;
-    if(gotData) {
-        if(gotData.index) {
-            pageContext.textList.getItem(gotData.index).text = gotData.text;
-        }
-        else {
-            pageContext.textList.push({ text: gotData.text });
-        }
-    }
     page.bindingContext = pageContext;
 }
 function listViewItemTap(item) {

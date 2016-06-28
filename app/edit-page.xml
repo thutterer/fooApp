@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <ActionBar title="Edit Text">
+  <ActionBar title="Edit Text" android.iconVisibility="always">
     <ActionItem tap="onSave" ios.systemIcon="3" android.systemIcon="ic_menu_save" ios.position="right"/>
     <ActionItem tap="onCancel" ios.systemIcon="1" android.systemIcon="ic_menu_close_clear_cancel"/>
   </ActionBar>
   <StackLayout>
-    <TextView id="textEditor" text="{{ text }}" />
+    <TextView id="textEditor" class="big" text="{{ text }}" />
   </StackLayout>
 </Page>

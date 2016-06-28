@@ -1,7 +1,8 @@
-﻿.tab-content {
+﻿.big {
+    margin: 15;
     vertical-align: center;
     color: #808080;
-    font-size: 24;
+    font-size: 18;
     padding: 20;
 }
 

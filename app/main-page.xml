@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <ActionBar title="fooApp">
+  <ActionBar title="fooApp" android.iconVisibility="always">
     <ActionItem tap="onAdd" ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right"/>
   </ActionBar>
   <StackLayout>
-    <ListView items="{{ textList }}" itemTap="listViewItemTap">
+    <ListView class="big" items="{{ textList }}" itemTap="listViewItemTap">
       <ListView.itemTemplate>
         <Label text="{{ text }}" horizontalAlignment="left" verticalAlignment="center"/>
       </ListView.itemTemplate>
